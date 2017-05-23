@@ -1,6 +1,6 @@
 # \<elmsln-open-studio\>
 
-open studio application
+Gitbook application
 
 ## Install the Polymer-CLI
 

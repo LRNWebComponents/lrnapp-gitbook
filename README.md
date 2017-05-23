@@ -1,4 +1,4 @@
-# \<elmsln-open-studio\>
+# \<lrnapp-gitbook>
 
 Gitbook application
 

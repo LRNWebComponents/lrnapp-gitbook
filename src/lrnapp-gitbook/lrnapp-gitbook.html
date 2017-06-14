@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/lrn-gitgraph/lrn-gitgraph.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="lrnapp-gitbook">
   <template>
@@ -14,16 +15,31 @@
         min-width: 1rem;
       }
     </style>
-  </template>
 
+    <iron-ajax
+      auto
+      url="http://localhost:1337/commits/all"
+      handle-as="json"
+      last-response="{{commits}}"></iron-ajax>
+    
+    <div is="dom-if" if="[[commits]]">
+      <lrn-gitgraph commits="[[commits]]"></lrn-gitgraph>
+    </div>
+  </template>
   <script>
     Polymer({
       is: 'lrnapp-gitbook',
       properties: {
+        basePath: {
+          type: String
+        }
       },
       /**
        * Simple way to convert from object to array.
        */
+      _handleResponse: function(res) {
+        console.log(res);
+      },
       _toArray: function(obj) {
         return Object.keys(obj).map(function(key) {
           return obj[key];

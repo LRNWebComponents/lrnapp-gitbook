@@ -5,8 +5,10 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.9.1",
     "build": "LRNWebComponents/build#^0.0.1",
-    "hax-behaviors": "LRNWebComponents/hax-behaviors#^0.0.13",
-    "lrn-gitgraph": "LRNWebComponents/lrn-gitgraph#^0.0.2"
+    "hax-behaviors": "LRNWebComponents/hax-behaviors#^0.0",
+    "lrn-gitgraph": "LRNWebComponents/lrn-gitgraph#^0.0",
+    "app-route": "PolymerElements/app-route#^1",
+    "iron-pages": "PolymerElements/iron-pages#^1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

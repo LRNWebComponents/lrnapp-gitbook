@@ -1,6 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/lrn-gitgraph/lrn-gitgraph.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../lrnapp-gitbook-book-page/lrnapp-gitbook-book-page.html">
+<link rel="import" href="../lrnapp-gitbook-books/lrnapp-gitbook-books.html">
 
 <dom-module id="lrnapp-gitbook">
   <template>
@@ -14,17 +17,23 @@
         margin: 0;
         min-width: 1rem;
       }
-    </style>
 
-    <iron-ajax
-      auto
-      url="http://localhost:1337/commits/all"
-      handle-as="json"
-      last-response="{{commits}}"></iron-ajax>
+      lrn-gitbook-book {
+      }
+    </style>
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/books/:book"
+        data="{{data}}"
+        tail="{{tail}}">
+    </app-route>
+    <iron-pages selected="{{data.book}}" attr-for-selected="name">
+      <lrnapp-gitbook-book-page name="phys010"></lrnapp-gitbook-book-page>
+    </iron-pages>
+
+    <content></content>
     
-    <div is="dom-if" if="[[commits]]">
-      <lrn-gitgraph commits="[[commits]]"></lrn-gitgraph>
-    </div>
   </template>
   <script>
     Polymer({

@@ -4,6 +4,9 @@
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../lrnapp-gitbook-book-page/lrnapp-gitbook-book-page.html">
 <link rel="import" href="../lrnapp-gitbook-books/lrnapp-gitbook-books.html">
+<link rel="import" href="./lrnapp-gitbook-about-page.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer.html">
 
 <dom-module id="lrnapp-gitbook">
   <template>
@@ -24,15 +27,32 @@
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
-        pattern="/books/:book"
+        pattern="/:page"
         data="{{data}}"
         tail="{{tail}}">
     </app-route>
-    <iron-pages selected="{{data.book}}" attr-for-selected="name">
-      <lrnapp-gitbook-book-page name="phys010"></lrnapp-gitbook-book-page>
-    </iron-pages>
+
+    <app-header reveals>
+      <app-toolbar>
+        <paper-icon-button icon="menu" onclick="drawer.toggle()"></paper-icon-button>
+        <div main-title>My app</div>
+        <paper-icon-button icon="delete"></paper-icon-button>
+        <paper-icon-button icon="search"></paper-icon-button>
+        <paper-icon-button icon="close"></paper-icon-button>
+        <paper-progress value="10" indeterminate bottom-item></paper-progress>
+      </app-toolbar>
+    </app-header>
+    <app-drawer id="drawer" swipe-open></app-drawer>
+    <sample-content size="10"></sample-content>
+
 
     <content></content>
+
+    <iron-pages selected="{{data.page}}" attr-for-selected="name">
+      <lrnapp-gitbook-book-page name="books" route="{{tail}}"></lrnapp-gitbook-book-page>
+      <lrnapp-gitbook-about-page name="about" route="{{tail}}"></lrnapp-gitbook-about-page>
+    </iron-pages>
+
     
   </template>
   <script>
@@ -42,12 +62,6 @@
         basePath: {
           type: String
         }
-      },
-      /**
-       * Simple way to convert from object to array.
-       */
-      _handleResponse: function(res) {
-        console.log(res);
       },
       _toArray: function(obj) {
         return Object.keys(obj).map(function(key) {

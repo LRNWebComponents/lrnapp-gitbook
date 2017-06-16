@@ -25,7 +25,8 @@
     "sails-disk": "~0.10.9",
     "sails-hook-autoreload": "^0.14.1",
     "shelljs": "^0.7.8",
-    "simple-git": "^1.73.0"
+    "simple-git": "^1.73.0",
+    "ungit": "^1.1.19"
   },
   "scripts": {
     "debug": "node debug app.js",

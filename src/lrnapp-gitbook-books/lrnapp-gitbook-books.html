@@ -1,4 +1,5 @@
 <link rel="import" href="../lrnapp-gitbook-book/lrnapp-gitbook-book.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="lrnapp-gitbook-books">
   <template>
@@ -7,6 +8,18 @@
         display: flex;
       }
     </style>
+
+    <iron-ajax
+      auto
+      url="http://localhost:1337/api/books"
+      handle-as="json"
+      last-response="{{books}}"></iron-ajax>
+
+      <template is="dom-if" if="[[books]]">
+        <template is="dom-repeat" items="[[books]]">
+          <lrnapp-gitbook-book name="[[item.title]]"></lrnapp-gitbook-book>
+        </template>
+      </template>
 
     <content></content>
     

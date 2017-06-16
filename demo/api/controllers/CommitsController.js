@@ -5,10 +5,12 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var shell = require('shelljs');
-var Rx = require('rxjs/Rx');
 
 module.exports = {
-  'all': function(req,res) {
+  'findOne': function(req, res) {
+    res.json('test');
+  },
+  'book': function(req,res) {
     // get branches
     var output = [];
     var branches = ['master','test'];

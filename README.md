@@ -2,6 +2,30 @@
 
 Gitbook application
 
+## Install the lrnservice-gitbook microservice for development
+
+Run submodule update to get the most recent version of the lrnservice-gitbook repo.
+
+```
+git submodule update --init --recursive
+```
+
+Install the dependencies
+
+```
+cd lrnservice-gitbook
+npm install
+```
+
+Start the service
+
+```
+cd lrnservice-gitbook
+npm start
+```
+
+Once downloaded, follow the README.md file inside of the lrnservice-gitbook repo for setup instructions.
+
 ## Install the Polymer-CLI
 
 First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.

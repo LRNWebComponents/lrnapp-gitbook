@@ -24,6 +24,16 @@ cd lrnservice-gitbook
 npm start
 ```
 
+Create a book. Make a POST request to `http://localhost:1337/api/books` with the following data:
+
+```
+{
+    "title": "",
+    "repo": "",
+    "branch": "",
+}
+```
+
 Once downloaded, follow the README.md file inside of the lrnservice-gitbook repo for setup instructions.
 
 ## Install the Polymer-CLI

@@ -1,5 +1,5 @@
 <link rel="import" href="../../bower_components/lrn-gitgraph/lrn-gitgraph.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<!--<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">-->
 
 <dom-module id="lrnapp-gitbook-commits">
   <template>
@@ -41,7 +41,7 @@
         '_bookChanged(book)'
       ],
       computeUrl: function(book) {
-        return 'http://localhost:1337/api/books/' + book;
+        return 'http://localhost:1337/api/books/' + book + '/commits';
       },
       _bookChanged: function(book, old) {
         var root = this;

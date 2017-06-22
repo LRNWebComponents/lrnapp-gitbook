@@ -1,0 +1,97 @@
+
+<dom-module id="lrnapp-gitbook-canmerge">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <div class="wrapper">
+      <iron-ajax
+        auto
+        url="[[canMergeUrl]]"
+        handle-as="json"
+        last-response="{{canMerge}}"></iron-ajax>
+
+      <div class="button-wrapper">
+        <paper-button raised id="sync-button" disabled="{{_canSync(canMerge, syncing)}}">Sync Now</paper-button>
+        <paper-spinner active="{{syncing}}"></paper-spinner>
+      </div>
+
+      <iron-ajax
+        id="sync-request"
+        url="[[syncUrl]]"
+        handle-as="json"
+        on-response="_syncResponse"
+        loading="{{syncing}}"></iron-ajax>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'lrnapp-gitbook-canmerge',
+      properties: {
+        book: String,
+        canMergeUrl: {
+          type: String,
+          computed: 'computeCanMergeUrl(book)'
+        },
+        syncUrl: {
+          type: String,
+          computed: 'computeSyncUrl(book)'
+        },
+        canMerge: {
+          type: Boolean,
+          notify: true
+        },
+        syncing: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+      listeners: {
+        'click': '_onClick'
+      },
+      observers: [
+        '_syncingChanged(syncing)'
+      ],
+      _syncingChanged: function(syncing) {
+      },
+      computeCanMergeUrl: function(book) {
+        return 'http://localhost:1337/api/books/' + book + '/canmerge';
+      },
+      computeSyncUrl: function(book) {
+        return 'http://localhost:1337/api/books/' + book + '/sync';
+      },
+      _canSync: function(canMerge, syncing) {
+        console.log(canMerge, syncing);
+        if (!canMerge || syncing) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+      _onClick: function(e) {
+        var root = this;
+        if (e.target.tagName === 'PAPER-BUTTON') {
+          var syncRequest = root.$$('#sync-request');
+          root.syncing = true;
+          this.fire('syncing', {syncing: true});
+          syncRequest.generateRequest();
+        }
+      },
+      _syncResponse: function(e) {
+        var root = this;
+        root.syncing = false;
+        this.fire('syncing', {syncing: false});
+      }
+    });
+  </script>
+</dom-module>

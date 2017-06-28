@@ -13,7 +13,7 @@
 
     <iron-ajax
       auto
-      url="http://localhost:1337/api/books"
+      url="[[generateURL('api/books', endPoint, csrfToken)]]"
       handle-as="json"
       last-response="{{books}}"></iron-ajax>
 
@@ -23,15 +23,13 @@
         </template>
       </template>
 
-      {{endPoint}} test
-
     <content></content>
     
   </template>
   <script>
     Polymer({
       is: 'lrnapp-gitbook-books',
-      Behaviors: [SecureRequest.xhr],
+      behaviors: [SecureRequest.xhr],
       ready: function() {
       }
     });

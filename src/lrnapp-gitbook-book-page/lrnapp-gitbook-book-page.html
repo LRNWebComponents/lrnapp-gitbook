@@ -37,18 +37,16 @@
       tail="{{tail}}">
     </app-route>
 
-    {{endPoint}}
-
-    <lrnapp-gitbook-books></lrnapp-gitbook-books>
+    <lrnapp-gitbook-books end-point="[[endPoint]]" csrf-token="[[csrfToken]]"></lrnapp-gitbook-books>
     
     <template is="dom-if" if="[[data.book]]">
       <div class="header">
         <h2 class="title">[[data.book]]</h2>
-        <lrnapp-gitbook-canmerge book="[[data.book]]" can-merge="{{canMerge}}" syncing="{{syncing}}"></lrnapp-gitbook-canmerge>
+        <lrnapp-gitbook-canmerge book="[[data.book]]" can-merge="{{canMerge}}" syncing="{{syncing}}" end-point="[[endPoint]]" csrf-token="[[csrfToken]]"></lrnapp-gitbook-canmerge>
       </div>
       <template is="dom-if" if="[[showCommits]]" restamp>
         <paper-dialog-scrollable>
-          <lrnapp-gitbook-commits book="[[data.book]]"></lrnapp-gitbook-commits>
+          <lrnapp-gitbook-commits book="[[data.book]]" end-point="[[endPoint]]" csrf-token="[[csrfToken]]"></lrnapp-gitbook-commits>
         </paper-dialog-scrollable>
       </template>
     </template>

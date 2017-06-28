@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/lrn-gitgraph/lrn-gitgraph.html">
 <!--<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">-->
+<link rel="import" href="../../bower_components/secure-request/secure-request.html">
 
 <dom-module id="lrnapp-gitbook-commits">
   <template>
@@ -12,7 +13,7 @@
     <template is="dom-if" if="[[url]]">
       <iron-ajax
         auto
-        url="[[url]]"
+        url="[[generateURL('api/commits', endPoint, csrfToken)]]"
         handle-as="json"
         last-response="{{commits}}"></iron-ajax>
 
@@ -25,6 +26,7 @@
   <script>
     Polymer({
       is: 'lrnapp-gitbook-commits',
+      behaviors: [SecureRequest.xhr],
       properties: {
         book: {
           type: String

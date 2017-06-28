@@ -1,7 +1,7 @@
-<link rel="import" href="../../bower_components/build/build/default/index.html">
 <link rel="import" href="../lrnapp-gitbook-book-page/lrnapp-gitbook-book-page.html">
 <link rel="import" href="../lrnapp-gitbook-books/lrnapp-gitbook-books.html">
 <link rel="import" href="./lrnapp-gitbook-about-page.html">
+<link rel="import" href="../../bower_components/secure-request/secure-request.html">
 
 <dom-module id="lrnapp-gitbook">
   <template>
@@ -32,16 +32,12 @@
   <script>
     Polymer({
       is: 'lrnapp-gitbook',
+      Behaviors: [SecureRequest.xhr],
       properties: {
         basePath: {
           type: String
         }
-      },
-      _toArray: function(obj) {
-        return Object.keys(obj).map(function(key) {
-          return obj[key];
-        });
-      },
+      }
     });
   </script>
 </dom-module>

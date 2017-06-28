@@ -1,5 +1,5 @@
 <link rel="import" href="../lrnapp-gitbook-book/lrnapp-gitbook-book.html">
-<!--<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">-->
+<link rel="import" href="../../bower_components/secure-request/secure-request.html">
 
 <dom-module id="lrnapp-gitbook-books">
   <template>
@@ -23,12 +23,17 @@
         </template>
       </template>
 
+      {{endPoint}} test
+
     <content></content>
     
   </template>
   <script>
     Polymer({
-      is: 'lrnapp-gitbook-books'
+      is: 'lrnapp-gitbook-books',
+      Behaviors: [SecureRequest.xhr],
+      ready: function() {
+      }
     });
   </script>
 </dom-module>
